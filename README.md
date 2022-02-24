@@ -24,7 +24,7 @@ y letras que componen las imágenes de placas de matrículas.
 - Se partirá de una imagen a color.
 - El resultado será una imagen recortada que contendrá la información e la placa de la matrícula.
 
-<img src="Capturas/Captura de pantalla 2022-02-24 a las 11.55.53.png" width="800px"/>
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 11.55.53.png"/>
 
 ## Metodología
 - Obtención de la imagen de trabajo: Donde reduciremos la imagen y haremos una serie de transformaciones para poder utilizar durante el proceso, imágenes homogéneas entre las diferentes imágenes de matriculas.
@@ -36,29 +36,29 @@ y letras que componen las imágenes de placas de matrículas.
 - Primero reducimos la imagen a 120 columnas, para que siempre trabajemos con el mismo número entre una imagen y otra.
 - A partir de la imagen de intensidad, aplicamos una transformación logarítmica, con el objetivo de reducir el rango dinámico y homogeneizar la imagen.
 
-<img src="Capturas/Captura de pantalla 2022-02-24 a las 11.56.20.png" width="500px"/>
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 11.56.20.png"/>
 
 ## Detección de contornos horizontales
 - Aplicamos una máscara horizontal de bordes de Prewitt, y trabajaremos con la magnitud de bordes verticales.
 - Aplicamos un filtro de orden, donde seleccionaremos el percentil 80 de la ventana, en este caso una vecindad de 3 filas y 24 columnas.
 - Calculamos las proyecciones verticales, mediante la media de las columnas por cada fila, más tarde suavizamos mediante el uso de una media móvil.
 
-<img src="Capturas/Captura de pantalla 2022-02-24 a las 11.57.19.png" width="500px"/>
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 11.57.19.png"/>
 
 - Tenemos que encontrar las posiciones de los dos máximos los suficientemente separados para que correspondan a distantas zonas de la imagen, así como el mínimo entre ellos.
 - Para el primer máximo, bastará con calcular el valor máximo del vector suavizado.
 - Para el segundo valor lo calcularemos a partir de la siguiente fórmula propocionada: [(f - $f_{max1})^2$ * Vector_PSuav(f)]
  
- <img src="Capturas/Captura de pantalla 2022-02-24 a las 13.16.50.png" width="500px"/>
+ <img src="Capturas/Captura de pantalla 2022-02-24 a las 13.16.50.png"/>
 
 - Seleccionamos de los dos máximos, el perteneciente a la placa de la matrícula, mediante un criterio especificado en el enunciado.
 - Una vez conocido el máximo descartado, asignamos el valor mínimo hasta el principio o hasta el final, dependiendo de si la fila del máximo descartado es inferior o superior a la fila del máximo descartado.
  
- <img src="Capturas/Captura de pantalla 2022-02-24 a las 11.57.33.png" width="500px"/>
+ <img src="Capturas/Captura de pantalla 2022-02-24 a las 11.57.33.png"/>
 
  - Encontramos las filas que limitan la matricuta. Para ello aplicamos un umbral el cual es calculado como el 60% del valor del máximo del vector suavizado. Las posiciones de interés serán la primera y la última fila que satisfacen este umbral.
 
- <img src="Capturas/Captura de pantalla 2022-02-24 a las 13.20.05.png" width="500px"/>
+ <img src="Capturas/Captura de pantalla 2022-02-24 a las 13.20.05.png"/>
 
  ## Detección de contornos verticales
  - El primer paso a realizar es igual que en el proceso anterior, haremos uso de la máscara de Prewitt.
