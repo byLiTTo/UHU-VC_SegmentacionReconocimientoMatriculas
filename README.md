@@ -192,6 +192,7 @@ histograma, concretamente con el Método de OTSU.
 - Recorreremos todas las plantillas y calcularemos el valor de correlación entre dos matrices, binarias: la matriz del boundingbox y las plantillas facilitadas.
 - Se calcula mediante la fórmula:
 <img src="Capturas/Captura de pantalla 2022-02-24 a las 12.07.27.png"/>
+
 - Algo a tener en cuenta es que ambas matrices deben tener las mismas dimensiones por lo que ajustamos el tamaño del BB para que coincida con el de la plantilla.
 
 ## Averiguar carácter
