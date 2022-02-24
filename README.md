@@ -169,3 +169,51 @@ histograma, concretamente con el Método de OTSU.
 ---
 
 # Fase 3: Reconocimiento de caracteres
+## Objetivo
+- Reconocer los caracteres que integran las matriculas de las imágenes.
+- El problema está restringido al reconocimiento de los siguientes caracteres, que son todos los que aparecen en las placas de matricula:
+
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 12.07.04.png"/>
+
+## Diseño
+- Se nos ha facilitado una serie de plantillas, matrices binarias nombradas de forma que su nombre especifica el carácter al que pertenece, según su posición en el vector de caracteres.
+- Para cada carácter, tenemos 7 plantillas, donde se observan diferentes rotaciones del mismo (-9°, -6°, -3°, 0°, 3°, 6°, 9°).
+- Ajustaremos dichas plantillas mediante Template Matching y reconoceremos un carácter de la imagen con el de la plantilla que alcance máxima similitud.
+
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 12.07.16.png"/>
+
+## Metodología
+- **Cuantificar grado de similitud**: mediante el valor de correlación.
+- **Averiguar carácter**: escogeremos la plantilla de máxima correlación, como cada plantilla tiene asociada en su nombre la posición del vector de caracteres, ya conocemos el carácter reconocido.
+- **Hallar el centroide**: punto, de la imagen original, de mayor semejanza a la imagen del BoundingBox del carácter.
+- **Representar BoundingBox en la imagen original**: representar los bordes del BoundingBox, haciendo coincidir el centro con el centroide en la imagen.
+
+## Grado de similitud
+- Recorreremos todas las plantillas y calcularemos el valor de correlación entre dos matrices, binarias: la matriz del boundingbox y las plantillas facilitadas.
+- Se calcula mediante la fórmula:
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 12.07.27.png"/>
+- Algo a tener en cuenta es que ambas matrices deben tener las mismas dimensiones por lo que ajustamos el tamaño del BB para que coincida con el de la plantilla.
+
+## Averiguar carácter
+- Las plantillas vienen nombradas de tal manera que podemos saber su posición en el vector de caracteres, por tanto, sabemos qué carácter contiene cada plantilla.
+- Basta con hallar qué plantilla guarda más similitud con el BoundindBox que estamos comprobando y ya reconoceremos el carácter. Para ello comprobamos qué plantilla posee el mayor valor de correlación.
+ 
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 12.07.39.png"/>
+
+## Hallar centroide
+- Nuestro objetivo es hallar el centroide del carácter, pero en la imagen original, para ello buscaremos el punto en la imagen de mayor semejanza entre la imagen original y la imagen del boundingbox.
+- Para hallar este punto nos basaremos en la correlación cruzada normalizada. Usaremos la imagen de boundingbox y una ventana del mismo tamaño e iremos calculando la correlación entre matrices. Una vez finalizado el recorrido, buscamos el valor máximo de la matriz que tiene como dimensiones las mismas que la imagen original, la posición donde se encuentre dicho máximo, serán las coordenadas del punto donde se encuentra el centroide.
+
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 12.08.16.png"/>
+
+## Representar BoundingBox
+Conociendo las dimensiones del BoundingBox, podremos calcular fácilmente las esquinas y poder representar las 4 rectas que unen cada pareja de puntos
+
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 12.08.33.png"/>
+
+## Resultados
+Una vez reconocidos los caracteres, ponemos como título de la imagen la cadena de texto generada para poder comprobar visualmente si se realiza de forma correcta:
+
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 12.08.59.png"/>
+
+---
