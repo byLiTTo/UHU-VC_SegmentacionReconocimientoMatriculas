@@ -4,7 +4,7 @@
 :school: Universidad de Huelva  
 :books: Curso 2020-2021
 
-<img src="Capturas/Captura de pantalla 2022-02-24 a las 11.55.15.png" width="800px"/>
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 11.55.15.png"/>
 
 ---
 # Objetivo del trabajo
@@ -13,7 +13,7 @@ y letras que componen las imágenes de placas de matrículas.
 - Como entradas deberá recibir una cadena de texto con el nombre del archivo de la imagen a tratar y el número total de letras y número presentes en la matrícula
 - Como salida, una ventana tipo figure, con el resultado del reconocimiento como título y sobre la imagen original, representar el centroide de cada carácter y su BoundingBox.
 
-<img src="Capturas/Captura de pantalla 2022-02-24 a las 11.55.38.png" width="400px"/>
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 11.55.38.png"/>
 
 ---
 
@@ -24,7 +24,7 @@ y letras que componen las imágenes de placas de matrículas.
 - Se partirá de una imagen a color.
 - El resultado será una imagen recortada que contendrá la información e la placa de la matrícula.
 
-<img src="Capturas/Captura de pantalla 2022-02-24 a las 11.55.53.png" width="500px"/>
+<img src="Capturas/Captura de pantalla 2022-02-24 a las 11.55.53.png" width="800px"/>
 
 ## Metodología
 - Obtención de la imagen de trabajo: Donde reduciremos la imagen y haremos una serie de transformaciones para poder utilizar durante el proceso, imágenes homogéneas entre las diferentes imágenes de matriculas.
